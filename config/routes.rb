@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   mount GovukPublishingComponents::Engine, at: "/component-guide" if Rails.env.development?
 
+  root to: "development#index"
+
   get "/manage", to: "manage#show"
 
   get "/callback", to: "callback#show"

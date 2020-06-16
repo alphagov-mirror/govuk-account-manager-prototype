@@ -9,8 +9,7 @@
       Complete your details to register.
     </p>
 
-    <%= form_tag do %>
-
+    <%= form_with do %>
       <%= render "govuk_publishing_components/components/input", {
         label: {
           text: "Email address"
@@ -30,8 +29,6 @@
       <%= render "govuk_publishing_components/components/button", {
         text: "Register"
       } %>
-
     <% end %>
-
   </div>
 </div>
