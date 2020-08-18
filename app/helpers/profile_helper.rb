@@ -5,6 +5,7 @@ module ProfileHelper
     [
       attribute(:email, user_info[:email_verified] ? user_info[:email] : "#{user_info[:email]} (unverified)"),
       attribute(:test, Rails.env.production? ? nil : user_info[:test]),
+      attribute(:transition_checker_state, user_info[:transition_checker_state]),
     ].reject { |detail| detail.fetch(:value).blank? }
   end
 
