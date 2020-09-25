@@ -7,6 +7,15 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
     - uses: pre-commit/action@v2.0.0
+    - name: Alert Slack on failure
+      if: ${{ failure() }}
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
+      uses: voxmedia/github-action-slack-notify-build@v1
+      with:
+        channel: govuk-accounts-tech
+        status: FAILED
+        color: danger
   test:
     runs-on: ubuntu-latest
 
