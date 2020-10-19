@@ -14,16 +14,16 @@ RSpec.feature "Account Sign up", type: :feature do
 
     scenario do
       given_i_arrive_with_a_valid_jwt
-      and_i_see_enter_your_email_address_form
+      and_i_see_enter_your_email_address_form_heading
       and_i_enter_a_valid_email_address
       and_i_click_continue
-      and_i_see_create_password_form
+      and_i_see_create_password_form_heading
       and_i_enter_a_valid_password
       and_i_enter_an_identical_password_confirmation
       and_i_click_continue
-      and_i_see_data_protection_form
+      and_i_see_data_protection_form_heading
       and_i_click_continue
-      and_i_see_notification_form
+      and_i_see_the_notification_form_heading
       and_i_choose_yes
       and_i_click_continue
       then_i_see_confirm_email_page
@@ -36,36 +36,36 @@ RSpec.feature "Account Sign up", type: :feature do
     expect(page.status_code).to eql(200)
   end
 
-  def and_i_see_enter_your_email_address_form
-    expect(page).to have_text("Enter your email address")
+  def and_i_see_enter_your_email_address_form_heading
+    expect(page).to have_text(I18n.t("welcome.show.heading"))
   end
 
-  def and_i_see_create_password_form
-    expect(page).to have_text("Create password")
+  def and_i_see_create_password_form_heading
+    expect(page).to have_text(I18n.t("devise.registrations.new.needs_password.heading"))
   end
 
-  def and_i_see_data_protection_form
-    expect(page).to have_text("Control how we use information about you")
+  def and_i_see_data_protection_form_heading
+    expect(page).to have_text(I18n.t("devise.registrations.new.needs_consent.heading"))
   end
 
-  def and_i_see_notification_form
-    expect(page).to have_text("Do you want to receive emails about the UK transition?")
+  def and_i_see_the_notification_form_heading
+    expect(page).to have_text(I18n.t("devise.registrations.new.needs_email_decision.heading"))
   end
 
   def and_i_enter_a_valid_email_address
-    fill_in "Enter your email address", with: "test_email@dev.gov.uk"
+    fill_in I18n.t("devise.registrations.new.needs_password.fields.email.label"), with: "test_email@dev.gov.uk"
   end
 
   def and_i_enter_a_valid_password
-    fill_in "Create a new password", with: "testpass1"
+    fill_in I18n.t("devise.registrations.new.needs_password.fields.password.label"), with: "testpass1"
   end
 
   def and_i_enter_an_identical_password_confirmation
-    fill_in "Retype password", with: "testpass1"
+    fill_in I18n.t("devise.registrations.new.needs_password.fields.password_confirm.label"), with: "testpass1"
   end
 
   def and_i_choose_yes
-    choose "Yes"
+    choose I18n.t("devise.registrations.new.needs_email_decision.fields.email_signup.yes")
   end
 
   def and_i_click_continue

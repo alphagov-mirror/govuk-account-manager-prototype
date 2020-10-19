@@ -26,17 +26,17 @@
 
         <%= render "govuk_publishing_components/components/radio", {
           name: "email_decision",
-          heading: t("devise.registrations.new.needs_email_decision.fields.emailsignup.heading"),
+          heading: t("devise.registrations.new.needs_email_decision.fields.email_signup.heading"),
           heading_size: "s",
           error_message: devise_error_items(:email_decision, @resource_error_messages),
           items: [
             {
               value: "yes",
-              text: t("devise.registrations.new.needs_email_decision.fields.emailsignup.yes")
+              text: t("devise.registrations.new.needs_email_decision.fields.email_signup.yes")
             },
             {
               value: "no",
-              text: t("devise.registrations.new.needs_email_decision.fields.emailsignup.no")
+              text: t("devise.registrations.new.needs_email_decision.fields.email_signup.no")
             }
           ]
         } %>

@@ -148,9 +148,9 @@ en:
             <p class="govuk-body">You’ll never get more than one email a day. The email will include all the updates made that day.</p>
           unsubscribe: You can unsubscribe from emails or change your subscription at any time.
           fields:
-            emailsignup:
+            email_signup:
               heading: Do you want to receive emails about the UK transition?
-              yes: Yes
+              yes: "Yes"
               no: No, I just want to save my results
             submit:
               label: Continue
