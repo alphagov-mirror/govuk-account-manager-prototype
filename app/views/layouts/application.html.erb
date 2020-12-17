@@ -62,15 +62,17 @@
   } %>
 
   <div class="govuk-width-container app-width-container">
-    <% message = capture do %>
-      <%= t("feedback.banners.phase_intro") %>
-      <a class="govuk-link" href='<%= feedback_form_path %>'><%= t("feedback.banners.phase_link") %></a>
-      <%= t("feedback.banners.phase_outro") %>
+    <% if phase_banner_enabled %>
+      <% message = capture do %>
+        <%= t("feedback.banners.phase_intro") %>
+        <a class="govuk-link" href='<%= feedback_form_path %>'><%= t("feedback.banners.phase_link") %></a>
+        <%= t("feedback.banners.phase_outro") %>
+      <% end %>
+      <%= render "govuk_publishing_components/components/phase_banner", {
+        phase: "alpha",
+        message: message
+      } %>
     <% end %>
-    <%= render "govuk_publishing_components/components/phase_banner", {
-      phase: "alpha",
-      message: message
-    } %>
 
     <main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
       <%= yield %>

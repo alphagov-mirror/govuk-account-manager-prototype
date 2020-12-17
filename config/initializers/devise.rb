@@ -279,11 +279,13 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  config.warden do |manager|
-    manager.failure_app = CustomFailureApp
-    manager.strategies.add(:multi_factor_authenticatable, Devise::Strategies::MultiFactorAuthenticatable)
-    strategies = manager.default_strategies(scope: :user)
-    strategies[strategies.index(:database_authenticatable)] = :multi_factor_authenticatable
+  unless ENV["FEATURE_FLAG_ACCOUNTS"] == "disabled"
+    config.warden do |manager|
+      manager.failure_app = CustomFailureApp
+      manager.strategies.add(:multi_factor_authenticatable, Devise::Strategies::MultiFactorAuthenticatable)
+      strategies = manager.default_strategies(scope: :user)
+      strategies[strategies.index(:database_authenticatable)] = :multi_factor_authenticatable
+    end
   end
 
   # ==> Mountable engine configurations

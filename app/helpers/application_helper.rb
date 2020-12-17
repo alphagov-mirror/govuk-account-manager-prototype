@@ -8,6 +8,7 @@ module ApplicationHelper
   end
 
   def navigation_items
+    return [] if ENV["FEATURE_FLAG_ACCOUNTS"] == "disabled"
     if user_signed_in?
       [
         {
