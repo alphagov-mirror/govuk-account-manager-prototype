@@ -69,17 +69,5 @@ module GovukAccountManagerPrototype
     config.force_jwt_at_registration = true
 
     config.feature_flag_mfa = ENV["FEATURE_FLAG_MFA"] == "enabled"
-
-    # In the case that we need to take the GOV.UK Account down urgently, for instance
-    # in response to a major bug, or potential security issue, we have implimented a
-    # feature flag that will turn the feature off.
-    #
-    # If an ENV Var of FEATURE_FLAG_ACCOUNTS=disabled is added to the production server
-    # then:
-    # - All userfacing routes in the app will redirect to a status page with explanitory
-    #   content
-    # - All API requests will respond with 503 - Service Unavailable
-    # - The healthcheck endpoint will remain
-    config.feature_flag_govuk_accounts_disabled = ENV["FEATURE_FLAG_ACCOUNTS"] == "disabled"
   end
 end

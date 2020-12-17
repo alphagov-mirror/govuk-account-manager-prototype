@@ -1,7 +1,21 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  unless Rails.configuration.feature_flag_govuk_accounts_disabled
+  # In the case that we need to take the GOV.UK Account down urgently, for instance
+  # in response to a major bug, or potential security issue, we have implimented a
+  # feature flag that will turn the feature off.
+  #
+  # If an ENV Var of FEATURE_FLAG_ACCOUNTS=disabled is added to the production server
+  # then:
+  # - Users will be shown a 503 error page with explanitory content
+  # - All API requests will respond with 503 - Service Unavailable
+  # - The healthcheck endpoint will remain
+  if ENV["FEATURE_FLAG_ACCOUNTS"] == "disabled"
+
+    match "*path", to: "standard_errors#service_unavailable", via: %i[get post put patch delete], status: 503
+    root to: "standard_errors#service_unavailable"
+
+  else
     devise_for :users, skip: :all
     devise_scope :user do
       get  "/", to: "welcome#show", as: :new_user_session
@@ -114,10 +128,6 @@ Rails.application.routes.draw do
 
     use_doorkeeper
     use_doorkeeper_openid_connect
-  else
-    # In the case we have taken down the account we redirect all user facing
-    # traffic to a 503 status page
-    match '/*:path', :to => redirect(:status => 503)
   end
 
   mount GovukPublishingComponents::Engine, at: "/component-guide" if Rails.env.development?
@@ -126,7 +136,7 @@ Rails.application.routes.draw do
   get "/429", to: "standard_errors#too_many_requests"
   get "/422", to: "standard_errors#unprocessable_entity"
   get "/500", to: "standard_errors#internal_server_error"
-  get "/503", to: "standard_errors#service_unavailable"
+  get "/503", to: "standard_errors#service_unavailable", as: :service_unavailable
 
   get "/healthcheck", to: "healthcheck#show"
 end
