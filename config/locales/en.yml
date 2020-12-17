@@ -190,6 +190,11 @@ en:
         <p class="govuk-body">If you entered a web address, check it is correct.</p>
         <p class="govuk-body"><a class="govuk-link" href="/">Return to the home page.</a></p>
       heading: Page not found
+    service_unavailable:
+      content: |
+        <p class="govuk-body">Try again later</p>
+        <p class="govuk-body"><a class="govuk-link" href="https://gov.uk/transition">Go to the Brexit transition page</a> to find out what you need to do to get ready.</p>
+      heading: There is a problem with GOV.UK accounts
     too_many_requests:
       content: |
         <p class="govuk-body">You’ve tried to sign in using incorrect details too many times. You’ve been blocked from trying to sign in again for security reasons.</p>

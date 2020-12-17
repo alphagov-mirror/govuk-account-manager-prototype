@@ -97,7 +97,7 @@ RSpec.feature "Deactivate account by flag" do
   end
 
   def then_i_see_account_disabled_page_content
-    expect(page).to have_content(I18n.t("account_disabled.heading"))
-    expect(page).to have_content(I18n.t("account_disabled.content"))
+    expect(page).to have_content(I18n.t("standard_errors.service_unavailable.heading"))
+    expect(page).to have_content(I18n.t("standard_errors.service_unavailable.content"))
   end
 end

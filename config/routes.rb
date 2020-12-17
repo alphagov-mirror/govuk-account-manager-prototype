@@ -120,6 +120,7 @@ Rails.application.routes.draw do
   get "/429", to: "standard_errors#too_many_requests"
   get "/422", to: "standard_errors#unprocessable_entity"
   get "/500", to: "standard_errors#internal_server_error"
+  get "/503", to: "standard_errors#service_unavailable"
 
   get "/healthcheck", to: "healthcheck#show"
 end
