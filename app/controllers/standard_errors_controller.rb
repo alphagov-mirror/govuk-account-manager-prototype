@@ -17,6 +17,10 @@ class StandardErrorsController < ApplicationController
     top_level_error_handler
   end
 
+  def service_unavailable
+    error_page :service_unavailable
+  end
+
 private
 
   def error_page(error)
