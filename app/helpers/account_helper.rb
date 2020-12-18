@@ -11,11 +11,11 @@ module AccountHelper
   end
 
   def feedback_enabled_page
-    account_disabled ? false : paths_without_feedback_footer.include?(request.env["PATH_INFO"])
+    account_is_disabled ? false : paths_without_feedback_footer.include?(request.env["PATH_INFO"])
   end
 
   def phase_banner_enabled
-    account_disabled
+    account_is_disabled
   end
 
   def flash_as_notice(notice)
@@ -24,7 +24,7 @@ module AccountHelper
     ].include? notice
   end
 
-  def account_disabled
+  def account_is_disabled
     ENV["FEATURE_FLAG_ACCOUNTS"] == "disabled"
   end
 end
