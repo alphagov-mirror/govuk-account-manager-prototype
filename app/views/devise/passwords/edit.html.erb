@@ -27,7 +27,7 @@
         name: "user[password]",
         id: "password",
         error_message: devise_error_items(:password),
-        autocomplete: "new-password",
+        autocomplete: @reset_email ? "new-password" : "off",
       } %>
 
       <%= render "govuk_publishing_components/components/button", {
