@@ -44,3 +44,4 @@ jobs:
         run: |
           bundle exec rails db:setup
           bundle exec rake
+          yarn run lint 
