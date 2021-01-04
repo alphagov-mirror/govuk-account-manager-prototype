@@ -7,6 +7,12 @@ RUN apt-get update --fix-missing && apt-get -y upgrade \
       postgresql-11 redis-server \
     && rm ./google-chrome-stable_current_amd64.deb
 
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 23E7166788B63E1E \
+    && apt update -y \
+    && apt install -y yarn \
+    && yarn install
+
 COPY Gemfile* .ruby-version /application/
 
 WORKDIR /application/
