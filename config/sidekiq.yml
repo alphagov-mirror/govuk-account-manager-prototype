@@ -1,6 +1,7 @@
 :queues:
   - mailers
   - default
+  - ncsc_user_password_check
 
 :schedule:
   expire_registration_state:
