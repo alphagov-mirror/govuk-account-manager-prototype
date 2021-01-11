@@ -1,15 +1,30 @@
 class SecurityController < ApplicationController
   before_action :authenticate_user!
 
-  def show
-    @activity = current_user.security_activities.show_on_security_page.order(created_at: :desc)
-    @data_exchanges = dedup_nearby(current_user.data_activities.where.not(oauth_application_id: AccountManagerApplication.application.id).order(created_at: :desc))
+  def show; end
+
+  def report; end
+
+  helper_method :activity
+  def activity
+    current_user
+      .security_activities
+      .show_on_security_page
+      .order(created_at: :desc)
+  end
+
+  helper_method :data_exchanges
+  def data_exchanges
+    raw_exchanges = current_user
+      .data_activities
+      .where.not(oauth_application_id: AccountManagerApplication.application.id)
+      .order(created_at: :desc)
+
+    dedup_nearby(raw_exchanges)
       .compact
       .map { |a| activity_to_exchange(a) }
       .compact
   end
-
-  def report; end
 
 private
 
