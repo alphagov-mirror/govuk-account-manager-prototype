@@ -11,6 +11,7 @@ class SecurityController < ApplicationController
       .security_activities
       .show_on_security_page
       .order(created_at: :desc)
+      .to_a
   end
 
   helper_method :data_exchanges
@@ -19,6 +20,7 @@ class SecurityController < ApplicationController
       .data_activities
       .where.not(oauth_application_id: AccountManagerApplication.application.id)
       .order(created_at: :desc)
+      .to_a
 
     dedup_nearby(raw_exchanges)
       .compact
