@@ -71,10 +71,14 @@
       phase: "alpha",
       message: message
     } %>
-
-    <main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
-      <%= yield %>
-    </main>
+    <div class="govuk-grid-row govuk-main-wrapper">
+      <%= yield :account_navigation %>
+      <div class="govuk-grid-column-two-thirds">
+        <main class="app-main-class" id="main-content" role="main">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
   </div>
 
   <% if feedback_enabled_page %>
