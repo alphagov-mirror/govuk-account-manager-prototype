@@ -1,9 +1,7 @@
 <% content_for :title, t("account.manage.heading") %>
 <% content_for :location, "manage" %>
 <% content_for :account_navigation do %>
-<div class="govuk-grid-column-one-third">
   <%= render "account-navigation", page_is: yield(:location) %>
-</div>
 <% end %>
 
 <% if show_confirmation_reminder? %>
