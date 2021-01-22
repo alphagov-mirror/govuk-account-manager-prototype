@@ -6,7 +6,7 @@
 
 <%= render "govuk_publishing_components/components/back_link", { href: account_manage_path } %>
 <%= render "govuk_publishing_components/components/heading", {
-  text: t("mfa.phone.update.start.heading"),
+  text: yield(:title),
   heading_level: 1,
   font_size: "l",
   margin_bottom: 6,
