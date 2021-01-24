@@ -1,4 +1,4 @@
-class DeviseSessionsController < Devise::SessionsController
+class SessionsController < Devise::SessionsController
   include ApplicationHelper
   include CookiesHelper
   include UrlHelper
