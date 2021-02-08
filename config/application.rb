@@ -64,10 +64,6 @@ module GovukAccountManagerPrototype
 
     config.enable_registration = ENV["ENABLE_REGISTRATION"] != "false"
 
-    # show a page prompting the user to complete the transition
-    # checker if they try to register without a JWT
-    config.force_jwt_at_registration = true
-
     config.allow_insecure_change_credential = false
 
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml").to_s]

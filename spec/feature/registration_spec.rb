@@ -3,7 +3,6 @@ RSpec.feature "Registration" do
   include ActiveSupport::Testing::TimeHelpers
 
   before { allow(Rails.configuration).to receive(:enable_registration).and_return(registration_enabled) }
-  before { allow(Rails.configuration).to receive(:force_jwt_at_registration).and_return(force_jwt) }
 
   let(:registration_enabled) { true }
   let(:force_jwt) { false }
