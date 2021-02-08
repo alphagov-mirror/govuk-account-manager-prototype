@@ -2,11 +2,9 @@ RSpec.feature "Registration" do
   include ActiveJob::TestHelper
   include ActiveSupport::Testing::TimeHelpers
 
-  before { allow(Rails.configuration).to receive(:feature_flag_mfa).and_return(mfa_enabled) }
   before { allow(Rails.configuration).to receive(:enable_registration).and_return(registration_enabled) }
   before { allow(Rails.configuration).to receive(:force_jwt_at_registration).and_return(force_jwt) }
 
-  let(:mfa_enabled) { true }
   let(:registration_enabled) { true }
   let(:force_jwt) { false }
   let(:email) { "email@example.com" }
@@ -349,24 +347,6 @@ RSpec.feature "Registration" do
       visit "#{new_user_registration_your_information_path}?#{query}"
 
       expect(page).to have_text(I18n.t("mfa.phone.code.sign_up_heading"))
-    end
-  end
-
-  context "MFA is disabled" do
-    let(:mfa_enabled) { false }
-
-    it "skips over the MFA screens" do
-      visit_registration_form
-      enter_email_address
-      enter_password
-      submit_registration_form
-      provide_consent
-
-      expect(page).to have_text(I18n.t("confirmation_sent.heading"))
-
-      expect(User.last).to_not be_nil
-      expect(User.last.email).to eq(email)
-      expect(User.last.phone).to be_nil
     end
   end
 

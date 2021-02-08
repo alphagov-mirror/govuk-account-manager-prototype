@@ -68,8 +68,6 @@ module GovukAccountManagerPrototype
     # checker if they try to register without a JWT
     config.force_jwt_at_registration = true
 
-    config.feature_flag_mfa = ENV["FEATURE_FLAG_MFA"] == "enabled"
-
     config.allow_insecure_change_credential = false
 
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml").to_s]
