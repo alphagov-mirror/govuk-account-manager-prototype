@@ -62,8 +62,6 @@ module GovukAccountManagerPrototype
 
     config.exceptions_app = routes
 
-    config.enable_registration = ENV["ENABLE_REGISTRATION"] != "false"
-
     config.allow_insecure_change_credential = false
 
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.yml").to_s]
